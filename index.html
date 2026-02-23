@@ -126,6 +126,13 @@
         .improved-download-btn:hover::after { transform: translateX(0); }
         .improved-download-btn svg { width: 16px; height: 16px; fill: currentColor; }
 
+         /* Styles spécifiques pour la veille */
+        .veille-table { width: 100%; border-collapse: collapse; margin-top: 30px; background: rgba(255,255,255,0.02); }
+        .veille-table th, .veille-table td { padding: 20px; text-align: left; border-bottom: 1px solid #222; }
+        .veille-table th { font-family: 'Syncopate'; font-size: 0.7rem; color: var(--primary); text-transform: uppercase; }
+        .veille-table tr:hover { background: rgba(0, 255, 170, 0.05); }
+        .tag { display: inline-block; padding: 4px 10px; border: 1px solid var(--primary); font-size: 0.7rem; color: var(--primary); margin-right: 5px; margin-bottom: 5px; }
+
         @media (max-width: 1024px) { 
             .presentation-grid { grid-template-columns: 1fr; }
             .hero-full { min-height: auto; padding: 140px 10% 80px; }
@@ -363,6 +370,7 @@
 </body>
 
 </html>
+
 
 
 
