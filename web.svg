@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1f1a"/><stop offset="1" stop-color="#0a0a12"/></linearGradient>
+<radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#00ffaa" stop-opacity="0.22"/><stop offset="1" stop-color="#00ffaa" stop-opacity="0"/></radialGradient>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.05"/></pattern>
+</defs>
+<rect width="800" height="450" fill="url(#bg)"/><rect width="800" height="450" fill="url(#grid)"/>
+<circle cx="400" cy="225" r="230" fill="url(#glow)"/>
+<g transform="translate(400 225)" fill="none" stroke="#00ffaa" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<rect x="-190" y="-120" width="260" height="180" rx="10" stroke-opacity="0.5"/><rect x="-110" y="-70" width="300" height="200" rx="10" fill="#0a0a12"/><path d="M-110 -40H190"/><circle cx="-90" cy="-55" r="4" fill="#00ffaa"/><circle cx="-75" cy="-55" r="4" fill="#00ffaa"/><path d="M-60 10l-30 30 30 30M60 10l30 30-30 30M20 0l-30 110" stroke="#e8fff6"/>
+</g></svg>

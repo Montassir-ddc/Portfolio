@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1f1a"/><stop offset="1" stop-color="#0a0a12"/></linearGradient>
+<radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#00ffaa" stop-opacity="0.22"/><stop offset="1" stop-color="#00ffaa" stop-opacity="0"/></radialGradient>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.05"/></pattern>
+</defs>
+<rect width="800" height="450" fill="url(#bg)"/><rect width="800" height="450" fill="url(#grid)"/>
+<circle cx="400" cy="225" r="230" fill="url(#glow)"/>
+<g transform="translate(400 225)" fill="none" stroke="#00ffaa" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M-60 -150h110l50 50v200h-160z" stroke-opacity="0.45" transform="translate(-40 15)"/><path d="M-60 -140h110l50 50v220h-160z" fill="#0a0a12"/><path d="M50 -140v50h50"/><path d="M-35 -60h110" stroke="#e8fff6" stroke-opacity="0.7"/><path d="M-35 -34h90" stroke="#e8fff6" stroke-opacity="0.7"/><path d="M-35 -8h70" stroke="#e8fff6" stroke-opacity="0.7"/><path d="M-35 18h110" stroke="#e8fff6" stroke-opacity="0.7"/><path d="M-35 44h90" stroke="#e8fff6" stroke-opacity="0.7"/><path d="M-35 70h70" stroke="#e8fff6" stroke-opacity="0.7"/><path d="M-35 96h110" stroke="#e8fff6" stroke-opacity="0.7"/>
+</g></svg>

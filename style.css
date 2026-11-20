@@ -1,0 +1,375 @@
+/* =========================================================
+   STYLE DU PORTFOLIO – Montassir Didouche
+   Sommaire :
+   1. Couleurs et réglages de base
+   2. Fond animé
+   3. Barre de navigation et menu plein écran
+   4. Pages (une seule page visible à la fois)
+   5. Accueil
+   6. Cartes (projets et compétences)
+   7. Projets : filtres et étiquettes
+   8. Compétences du BTS (bloc 1)
+   9. Parcours professionnel (frise)
+   10. Veille technologique
+   11. Coordonnées, bouton CV, mentions légales, pied de page
+   +   Bouton clair/sombre et tableau de l'épreuve E5
+   12. Adaptation mobile
+   ========================================================= */
+
+
+/* ---------- 1. Couleurs et réglages de base ---------- */
+/* Les variables permettent de changer une couleur à un seul endroit */
+/* Thème SOMBRE (par défaut) */
+:root {
+    --vert: #00ffaa;          /* couleur principale (vert néon) */
+    --sur-vert: #000000;      /* texte écrit sur un fond vert */
+    --fond: #0a0a0a;          /* fond de la page */
+    --texte: #ffffff;         /* couleur du texte */
+    --texte-doux: #aaaaaa;    /* texte secondaire (dates, petites étiquettes) */
+    --bleu-nuit: #1a1a2e;     /* couleur du halo de fond */
+    --carte: #111111;         /* fond des cartes */
+    --carte-survol: #161616;  /* fond des cartes au survol */
+    --bordure: #222222;       /* bordure des cartes */
+    --ligne: #333333;         /* lignes et boutons de filtre */
+    --barre: rgba(10, 10, 10, 0.9); /* barre de navigation */
+    --menu: #000000;          /* fond du menu plein écran */
+    --tag-gris: #555555;      /* bordure des étiquettes de compétences */
+    --bulle: 0.08;            /* opacité de la bulle verte du fond */
+}
+
+/* Thème CLAIR : il suffit de changer les valeurs des variables.
+   Le script ajoute data-theme="clair" sur la balise <html>. */
+[data-theme="clair"] {
+    --vert: #00875a;          /* vert plus foncé pour rester lisible sur fond clair */
+    --sur-vert: #ffffff;
+    --fond: #f4f6f5;
+    --texte: #111111;
+    --texte-doux: #555555;
+    --bleu-nuit: #dff3ea;
+    --carte: #ffffff;
+    --carte-survol: #f0faf5;
+    --bordure: #dde3e0;
+    --ligne: #c5cec9;
+    --barre: rgba(244, 246, 245, 0.92);
+    --menu: #f4f6f5;
+    --tag-gris: #9aa5a0;
+    --bulle: 0.05;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+    background-color: var(--fond);
+    color: var(--texte);
+    overflow-x: hidden;
+}
+
+a { color: inherit; }
+
+/* Passage en douceur d'un thème à l'autre */
+body, nav, .carte, .menu, .encadre, .contact { transition: background-color 0.4s, color 0.4s, border-color 0.4s; }
+
+
+/* ---------- 2. Fond animé ---------- */
+.fond-halo {
+    position: fixed; inset: 0; z-index: -1;
+    background: radial-gradient(circle at 50% 50%, var(--bleu-nuit) 0%, var(--fond) 100%);
+}
+.fond-bulle {
+    position: fixed; z-index: -1;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: var(--vert); filter: blur(180px); opacity: var(--bulle);
+    animation: deplacement 20s infinite alternate;
+}
+@keyframes deplacement {
+    from { transform: translate(-10%, -10%); }
+    to   { transform: translate(40%, 30%); }
+}
+
+
+/* ---------- 3. Barre de navigation et menu plein écran ---------- */
+nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    padding: 25px 5%;
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--barre);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--bordure);
+}
+.logo {
+    font-family: 'Syncopate', Arial, sans-serif; font-weight: 700;
+    letter-spacing: 2px; font-size: 1.2rem; text-decoration: none;
+}
+
+/* Bouton "contour vert" réutilisé partout (menu, liens de l'accueil) */
+.bouton {
+    display: inline-block;
+    background: none; border: 1px solid var(--vert); color: var(--vert);
+    font-family: 'Syncopate', Arial, sans-serif; font-size: 0.8rem;
+    padding: 10px 25px; cursor: pointer; text-decoration: none;
+    transition: 0.3s;
+}
+.bouton:hover, .bouton:focus-visible {
+    background: var(--vert); color: var(--sur-vert); box-shadow: 0 0 20px var(--vert);
+}
+
+/* Le menu est caché au-dessus de l'écran ; la classe "ouvert" le fait descendre */
+.menu {
+    position: fixed; top: -110%; left: 0; z-index: 999;
+    width: 100%; height: 100vh; background: var(--menu);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    transition: 0.7s cubic-bezier(0.85, 0, 0.15, 1);
+}
+.menu.ouvert { top: 0; }
+.menu a {
+    font-family: 'Syncopate', Arial, sans-serif; font-size: clamp(1rem, 4vw, 2rem);
+    color: transparent; -webkit-text-stroke: 1px var(--texte);
+    text-decoration: none; text-transform: uppercase; text-align: center;
+    margin: 12px 0; transition: 0.4s;
+}
+.menu a:hover, .menu a:focus-visible, .menu a.actif {
+    color: var(--vert); -webkit-text-stroke: 1px var(--vert); transform: skewX(-5deg);
+}
+
+
+/* ---------- 4. Pages ---------- */
+/* Toutes les pages sont cachées, sauf celle qui a la classe "visible" */
+.page { display: none; min-height: 100vh; padding: 140px 10% 80px; }
+.page.visible { display: block; animation: apparition 0.8s ease forwards; }
+@keyframes apparition {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Titre de page avec la barre verte à gauche */
+.titre-page {
+    font-family: 'Syncopate', Arial, sans-serif; text-transform: uppercase;
+    font-size: clamp(1.1rem, 3vw, 1.8rem);
+    border-left: 5px solid var(--vert); padding-left: 20px; margin-bottom: 40px;
+}
+/* Sous-titre vert */
+.sous-titre {
+    font-family: 'Syncopate', Arial, sans-serif; text-transform: uppercase;
+    color: var(--vert); font-size: 0.8rem; margin: 50px 0 20px;
+}
+.intro { opacity: 0.8; line-height: 1.7; max-width: 850px; margin-bottom: 30px; }
+
+
+/* ---------- 5. Accueil ---------- */
+#accueil { display: none; padding-top: 120px; }
+#accueil.visible { display: flex; flex-direction: column; justify-content: center; }
+#accueil h1 {
+    font-family: 'Syncopate', Arial, sans-serif; line-height: 1.1;
+    font-size: clamp(1.8rem, 6vw, 4.5rem); margin-bottom: 40px;
+}
+.vert { color: var(--vert); }
+
+.accueil-grille { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.accueil-texte p { font-size: 1.1rem; line-height: 1.8; font-weight: 300; opacity: 0.9; margin-bottom: 20px; }
+.accueil-boutons { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 15px; }
+.photo {
+    width: 100%; max-width: 420px; border-radius: 20px;
+    border: 1px solid var(--vert); box-shadow: 0 0 30px rgba(0, 255, 170, 0.2);
+}
+
+
+/* ---------- 6. Cartes (projets et compétences) ---------- */
+.grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+
+.carte {
+    background: var(--carte); border: 1px solid var(--bordure);
+    display: flex; flex-direction: column; overflow: hidden; transition: 0.3s;
+}
+.carte:hover { border-color: var(--vert); background: var(--carte-survol); }
+
+/* L'image en haut de la carte : grisée, elle reprend ses couleurs au survol */
+.carte img {
+    width: 100%; height: 180px; object-fit: cover; display: block;
+    filter: grayscale(0.5); transition: 0.5s; border-bottom: 1px solid var(--bordure);
+}
+.carte:hover img { filter: grayscale(0); transform: scale(1.04); }
+
+.carte-contenu { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+.carte h3 {
+    font-family: 'Syncopate', Arial, sans-serif; text-transform: uppercase;
+    color: var(--vert); font-size: 0.85rem; line-height: 1.5; margin-bottom: 15px;
+}
+.carte p { font-size: 0.95rem; opacity: 0.75; line-height: 1.7; }
+.carte ul { margin: 12px 0 0 18px; font-size: 0.9rem; opacity: 0.75; line-height: 1.7; }
+
+
+/* ---------- 7. Projets : filtres et étiquettes ---------- */
+.filtres { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 35px; }
+.filtre {
+    background: none; border: 1px solid var(--ligne); color: var(--texte); cursor: pointer;
+    font-family: 'Syncopate', Arial, sans-serif; font-size: 0.65rem; text-transform: uppercase;
+    padding: 10px 18px; transition: 0.3s;
+}
+.filtre:hover, .filtre.actif { border-color: var(--vert); color: var(--vert); background: rgba(0, 255, 170, 0.06); }
+
+/* Une carte cachée par le filtre */
+.carte.cachee { display: none; }
+
+/* Étiquette "Formation" (verte) ou "Stage" (blanche) */
+.etiquette {
+    align-self: flex-start; margin-bottom: 12px; padding: 4px 8px;
+    font-family: 'Syncopate', Arial, sans-serif; font-size: 0.55rem; font-weight: 700; text-transform: uppercase;
+    background: var(--vert); color: var(--sur-vert);
+}
+.etiquette.stage { background: var(--texte); color: var(--fond); }
+
+.periode {
+    font-family: 'Syncopate', Arial, sans-serif; font-size: 0.6rem; text-transform: uppercase;
+    color: var(--texte-doux); letter-spacing: 1px; margin-bottom: 10px;
+}
+
+/* Le bas de la carte : technologies et compétences */
+.carte-bas { margin-top: auto; padding-top: 20px; }
+.carte-bas small {
+    display: block; margin: 10px 0 6px;
+    font-family: 'Syncopate', Arial, sans-serif; font-size: 0.55rem; text-transform: uppercase;
+    color: var(--texte-doux); letter-spacing: 1px;
+}
+.tag {
+    display: inline-block; margin: 0 5px 5px 0; padding: 4px 10px;
+    border: 1px solid var(--vert); color: var(--vert); font-size: 0.7rem;
+}
+.tag.gris { border-color: var(--tag-gris); color: var(--texte); opacity: 0.85; }
+
+
+/* ---------- 8. Compétences du BTS (bloc 1) ---------- */
+.bloc1 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.bloc1 div { background: var(--carte); border: 1px solid var(--bordure); border-top: 3px solid var(--vert); padding: 25px; }
+.bloc1 h4 { font-size: 1rem; margin-bottom: 10px; }
+.bloc1 p { font-size: 0.9rem; opacity: 0.7; line-height: 1.6; }
+
+
+/* ---------- 9. Parcours professionnel (frise) ---------- */
+.frise { border-left: 1px solid var(--ligne); padding-left: 30px; margin-top: 20px; }
+.etape { position: relative; display: grid; grid-template-columns: 200px 1fr; gap: 30px; margin-bottom: 60px; }
+/* Le petit carré vert sur la ligne de la frise */
+.etape::before {
+    content: ''; position: absolute; left: -36px; top: 5px;
+    width: 10px; height: 10px; background: var(--vert); box-shadow: 0 0 10px var(--vert);
+}
+.etape img {
+    width: 100%; height: 140px; object-fit: cover; border-radius: 8px;
+    border: 1px solid var(--bordure); filter: grayscale(0.4); transition: 0.4s;
+}
+.etape:hover img { filter: grayscale(0); border-color: var(--vert); }
+.etape-texte { display: flex; flex-direction: column; justify-content: center; }
+.date { font-family: 'Syncopate', Arial, sans-serif; font-size: 0.7rem; color: var(--vert); letter-spacing: 1px; margin-bottom: 8px; }
+.poste { font-weight: 800; font-size: 1.1rem; text-transform: uppercase; margin-bottom: 5px; }
+.lieu { font-size: 0.9rem; opacity: 0.6; font-style: italic; }
+.etape-texte p { font-size: 0.9rem; opacity: 0.75; line-height: 1.6; margin-top: 10px; }
+.lien-vert { color: var(--vert); font-size: 0.85rem; margin-top: 8px; align-self: flex-start; }
+
+
+/* ---------- 10. Veille technologique ---------- */
+.encadre { background: var(--carte); border: 1px solid var(--bordure); padding: 30px; margin-bottom: 25px; }
+.encadre b {
+    display: block; margin-bottom: 15px;
+    font-family: 'Syncopate', Arial, sans-serif; font-size: 0.65rem; text-transform: uppercase; color: var(--vert);
+}
+.encadre p, .encadre li { line-height: 1.7; opacity: 0.85; }
+.encadre ul { margin-left: 20px; }
+.deux-colonnes { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+
+.tableau-defilant { overflow-x: auto; }
+.veille { width: 100%; border-collapse: collapse; background: var(--carte); }
+.veille th, .veille td { padding: 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--bordure); }
+.veille th { font-family: 'Syncopate', Arial, sans-serif; font-size: 0.7rem; text-transform: uppercase; color: var(--vert); }
+.veille td:first-child { white-space: nowrap; }
+.veille tr:hover { background: rgba(0, 255, 170, 0.05); }
+.veille a { color: var(--vert); }
+
+
+/* ---------- 11. Coordonnées, CV, mentions légales, pied de page ---------- */
+.contact { background: var(--carte); border: 1px solid var(--bordure); padding: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.contact b {
+    display: block; margin-bottom: 15px;
+    font-family: 'Syncopate', Arial, sans-serif; font-size: 0.65rem; text-transform: uppercase; color: var(--vert);
+}
+.contact p { margin-bottom: 25px; line-height: 1.6; }
+.contact a:not(.bouton-cv) { text-decoration: none; border-bottom: 1px solid var(--vert); }
+.contact a:not(.bouton-cv):hover { color: var(--vert); }
+
+/* Bouton de téléchargement du CV : un fond vert glisse de gauche à droite au survol */
+.bouton-cv {
+    position: relative; overflow: hidden; z-index: 1;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px; border: 1px solid var(--vert); color: var(--vert); text-decoration: none;
+    font-family: 'Syncopate', Arial, sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    transition: 0.4s;
+}
+.bouton-cv::after {
+    content: ''; position: absolute; inset: 0; z-index: -1; background: var(--vert);
+    transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.85, 0, 0.15, 1);
+}
+.bouton-cv:hover { color: var(--sur-vert); }
+.bouton-cv:hover::after { transform: translateX(0); }
+.bouton-cv svg { width: 16px; height: 16px; fill: currentColor; }
+
+.mentions h3 { font-family: 'Syncopate', Arial, sans-serif; font-size: 0.75rem; text-transform: uppercase; color: var(--vert); margin: 35px 0 12px; }
+.mentions p { opacity: 0.8; line-height: 1.7; max-width: 850px; margin-bottom: 10px; }
+.mentions a { color: var(--vert); }
+
+footer {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 15px;
+    padding: 30px 10%; border-top: 1px solid var(--bordure); font-size: 0.8rem; opacity: 0.7;
+}
+footer a { text-decoration: none; border-bottom: 1px solid var(--vert); }
+
+
+/* ---------- Bouton mode clair / mode sombre ---------- */
+.nav-droite { display: flex; gap: 12px; align-items: center; }
+.bouton-theme {
+    width: 42px; height: 42px; display: grid; place-items: center;
+    background: none; border: 1px solid var(--vert); color: var(--vert); cursor: pointer;
+    transition: 0.3s;
+}
+.bouton-theme:hover, .bouton-theme:focus-visible { background: var(--vert); color: var(--sur-vert); }
+.bouton-theme svg { width: 20px; height: 20px; fill: currentColor; }
+/* On affiche la lune en mode sombre, le soleil en mode clair */
+.icone-soleil { display: none; }
+[data-theme="clair"] .icone-soleil { display: block; }
+[data-theme="clair"] .icone-lune { display: none; }
+
+
+/* ---------- Page Épreuve E5 : tableau de synthèse ---------- */
+.e5-infos { display: flex; flex-wrap: wrap; gap: 10px 30px; margin-bottom: 25px; opacity: 0.85; }
+.e5-infos b { color: var(--vert); }
+.tableau-e5 { width: 100%; min-width: 820px; border-collapse: collapse; background: var(--carte); font-size: 0.9rem; }
+.tableau-e5 th, .tableau-e5 td { border: 1px solid var(--bordure); padding: 12px; vertical-align: middle; }
+.tableau-e5 thead th {
+    font-family: 'Syncopate', Arial, sans-serif; font-size: 0.6rem; text-transform: uppercase;
+    color: var(--vert); text-align: center; line-height: 1.5;
+}
+.tableau-e5 thead th:first-child { text-align: left; }
+.tableau-e5 .per { white-space: nowrap; font-size: 0.8rem; color: var(--texte-doux); }
+.tableau-e5 .coche { text-align: center; width: 95px; color: var(--vert); font-weight: 800; font-size: 1.1rem; }
+.tableau-e5 .coche:not(:empty) { background: rgba(0, 255, 170, 0.12); }
+.tableau-e5 .section td {
+    background: var(--vert); color: var(--sur-vert); font-weight: 800; text-align: center;
+    font-family: 'Syncopate', Arial, sans-serif; font-size: 0.65rem; text-transform: uppercase;
+}
+.tableau-e5 tbody tr:not(.section):hover { background: var(--carte-survol); }
+.e5-actions { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 15px; }
+
+
+/* ---------- 12. Adaptation mobile (écrans de moins de 1024 px) ---------- */
+@media (max-width: 1024px) {
+    .accueil-grille, .deux-colonnes, .contact { grid-template-columns: 1fr; }
+    .photo { max-width: 280px; order: -1; }
+    .etape { grid-template-columns: 1fr; }
+    .etape img { height: 200px; }
+    .contact { padding: 30px; }
+    .page { padding: 120px 6% 60px; }
+}
+
+/* Si l'utilisateur a désactivé les animations dans son système */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+}

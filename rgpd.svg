@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1f1a"/><stop offset="1" stop-color="#0a0a12"/></linearGradient>
+<radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#00ffaa" stop-opacity="0.22"/><stop offset="1" stop-color="#00ffaa" stop-opacity="0"/></radialGradient>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.05"/></pattern>
+</defs>
+<rect width="800" height="450" fill="url(#bg)"/><rect width="800" height="450" fill="url(#grid)"/>
+<circle cx="400" cy="225" r="230" fill="url(#glow)"/>
+<g transform="translate(400 225)" fill="none" stroke="#00ffaa" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M0 -150L120 -105V0C120 80 60 130 0 155C-60 130 -120 80 -120 0V-105Z" fill="#0a0a12"/><rect x="-45" y="-10" width="90" height="75" rx="8" stroke="#e8fff6"/><path d="M-28 -10V-38a28 28 0 0 1 56 0V-10" stroke="#e8fff6"/><circle cx="0" cy="25" r="9" fill="#00ffaa"/><circle cx="85.0" cy="-40" r="0"/>
+</g></svg>

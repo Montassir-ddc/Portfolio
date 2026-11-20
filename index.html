@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- ===== Informations de la page (invisibles pour le visiteur) ===== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Montassir Didouche | Portfolio BTS SIO SLAM</title>
+
+    <!-- Référencement : description affichée par Google -->
+    <meta name="description" content="Portfolio de Montassir Didouche, étudiant en BTS SIO option SLAM au Lycée Saint-Michel d'Annecy : projets de développement, stage en DSI, compétences et veille technologique sur l'IA dans le développement logiciel.">
+    <meta name="author" content="Montassir Didouche">
+    <link rel="canonical" href="https://montassir-ddc.github.io/Portfolio/">
+
+    <!-- Aperçu quand le lien est partagé (LinkedIn, etc.) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Montassir Didouche | Portfolio BTS SIO SLAM">
+    <meta property="og:description" content="Projets de développement, stage en DSI et veille technologique d'un étudiant en BTS SIO SLAM.">
+    <meta property="og:url" content="https://montassir-ddc.github.io/Portfolio/">
+    <meta property="og:image" content="https://montassir-ddc.github.io/Portfolio/images/photo.jpg">
+
+    <!-- Icône de l'onglet, polices et feuille de style -->
+    <link rel="icon" href="images/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Applique tout de suite le thème choisi la dernière fois (évite un flash de couleur) -->
+    <script>
+        try {
+            if (localStorage.getItem('theme') === 'clair') {
+                document.documentElement.setAttribute('data-theme', 'clair');
+            }
+        } catch (e) { /* si le navigateur bloque la mémoire, on garde le thème sombre */ }
+    </script>
+</head>
+<body>
+
+    <!-- Fond animé (halo + bulle verte floue) -->
+    <div class="fond-halo"></div>
+    <div class="fond-bulle"></div>
+
+    <!-- ===== Barre du haut ===== -->
+    <nav>
+        <a href="#accueil" class="logo">M.DIDOUCHE</a>
+        <div class="nav-droite">
+            <!-- Bouton mode clair / mode sombre : la lune ou le soleil s'affiche selon le thème -->
+            <button class="bouton-theme" id="bouton-theme" aria-label="Passer en mode clair" title="Mode clair / sombre">
+                <svg class="icone-lune" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+                <svg class="icone-soleil" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M11 1h2v3h-2zM11 20h2v3h-2zM1 11h3v2H1zM20 11h3v2h-3zM4.2 2.8l2.1 2.1-1.4 1.4-2.1-2.1zM17.7 18.1l2.1 2.1-1.4 1.4-2.1-2.1zM2.8 19.8l2.1-2.1 1.4 1.4-2.1 2.1zM18.1 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg>
+            </button>
+            <button class="bouton" id="bouton-menu" aria-expanded="false" aria-controls="menu">[ MENU ]</button>
+        </div>
+    </nav>
+
+    <!-- ===== Menu plein écran : chaque lien affiche une page ===== -->
+    <div class="menu" id="menu">
+        <a href="#accueil">Présentation</a>
+        <a href="#projets">Projets</a>
+        <a href="#competences">Compétences</a>
+        <a href="#parcours">Parcours Professionnel</a>
+        <a href="#veille">Veille Technologique</a>
+        <a href="#e5">Épreuve E5</a>
+        <a href="#contact">Coordonnées</a>
+    </div>
+
+
+    <!-- =====================================================
+         PAGE 1 : ACCUEIL
+         ===================================================== -->
+    <main id="accueil" class="page">
+        <h1>MONTASSIR <br><span class="vert">DIDOUCHE</span></h1>
+        <div class="accueil-grille">
+            <div class="accueil-texte">
+                <p>Étudiant à Annecy et diplômé d'un baccalauréat STMG (Sciences et Technologies du Management et de la Gestion), je suis en deuxième année de BTS Services Informatiques aux Organisations, option Solutions Logicielles et Applications Métiers (SLAM), au Lycée Saint-Michel.</p>
+                <p>Mon objectif est de devenir expert en ingénierie logicielle. Très motivé et curieux, je m'investis pleinement dans chaque projet pour progresser chaque jour et apporter des solutions concrètes aux utilisateurs.</p>
+                <div class="accueil-boutons">
+                    <a href="#projets" class="bouton">VOIR MES PROJETS</a>
+                    <a href="https://www.linkedin.com/in/montassir-didouche-0402373a6/" target="_blank" rel="noopener" class="bouton">LINKEDIN</a>
+                    <a href="https://github.com/Montassir-ddc" target="_blank" rel="noopener" class="bouton">GITHUB</a>
+                </div>
+            </div>
+            <img src="images/photo.jpg" alt="Photo de Montassir Didouche" class="photo">
+        </div>
+    </main>
+
+
+    <!-- =====================================================
+         PAGE 2 : PROJETS ET RÉALISATIONS
+         Pour ajouter un projet : copier un bloc <article> ... </article>
+         et modifier son contenu. data-type = "formation" ou "stage".
+         ===================================================== -->
+    <section id="projets" class="page">
+        <h2 class="titre-page">Projets &amp; Réalisations</h2>
+        <p class="intro">Les réalisations professionnelles menées en formation au Lycée Saint-Michel et en stage à la DSI du CHANGE. Chaque projet indique les compétences du bloc 1 du BTS SIO qu'il mobilise.</p>
+
+        <div class="filtres">
+            <button class="filtre actif" data-filtre="tous">Tous</button>
+            <button class="filtre" data-filtre="formation">En formation</button>
+            <button class="filtre" data-filtre="stage">En stage</button>
+        </div>
+
+        <div class="grille">
+
+            <!-- ---------- RÉALISATIONS EN FORMATION ---------- -->
+
+            <article class="carte projet" data-type="formation">
+                <img src="images/perceptron.svg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette">Formation</span>
+                    <div class="periode">01/09/2025 – 09/01/2026</div>
+                    <h3>Site web sur les perceptrons</h3>
+                    <p>Conception et développement d'un site web statique présentant le fonctionnement des réseaux de neurones artificiels (perceptrons).</p>
+                    <ul>
+                        <li>Structuration du contenu</li>
+                        <li>Intégration HTML / CSS / JavaScript</li>
+                        <li>Hébergement sur une machine virtuelle</li>
+                    </ul>
+                    <div class="carte-bas">
+                        <small>Technologies</small>
+                        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                        <small>Compétences</small>
+                        <span class="tag gris">Présence en ligne</span><span class="tag gris">Mise à disposition d'un service</span><span class="tag gris">Développement pro</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carte projet" data-type="formation">
+                <img src="images/base-de-donnees.jpeg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette">Formation</span>
+                    <div class="periode">10/01/2026 – 22/05/2026</div>
+                    <h3>Site dynamique pour un centre de loisirs</h3>
+                    <p>Conception et développement d'un site web dynamique avec base de données.</p>
+                    <ul>
+                        <li>Analyse du besoin</li>
+                        <li>Modélisation des données (MCD / MLD)</li>
+                        <li>Développement des fonctionnalités CRUD</li>
+                        <li>Tests et déploiement</li>
+                    </ul>
+                    <div class="carte-bas">
+                        <small>Technologies</small>
+                        <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">HTML / CSS</span>
+                        <small>Compétences</small>
+                        <span class="tag gris">Patrimoine informatique</span><span class="tag gris">Présence en ligne</span><span class="tag gris">Mode projet</span><span class="tag gris">Mise à disposition d'un service</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carte projet" data-type="formation">
+                <img src="images/web.svg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette">Formation</span>
+                    <div class="periode">10/01/2026 – 22/05/2026</div>
+                    <h3>Réalisation de sites web variés et de mon portfolio</h3>
+                    <p>Développement de plusieurs sites web dans le cadre des TP et création de ce portfolio.</p>
+                    <ul>
+                        <li>Mise en pratique des bonnes pratiques de développement web</li>
+                        <li>Prise en compte de l'accessibilité</li>
+                        <li>Portfolio publié sur GitHub Pages</li>
+                    </ul>
+                    <div class="carte-bas">
+                        <small>Technologies</small>
+                        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">PHP</span>
+                        <small>Compétences</small>
+                        <span class="tag gris">Présence en ligne</span><span class="tag gris">Mise à disposition d'un service</span><span class="tag gris">Développement pro</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carte projet" data-type="formation">
+                <img src="images/travail-equipe.jpg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette">Formation</span>
+                    <div class="periode">01/09/2025 – 09/01/2026</div>
+                    <h3>Réponse à un appel d'offres fictif</h3>
+                    <p>Mise en situation de prestataire informatique répondant à la demande d'un client.</p>
+                    <ul>
+                        <li>Analyse d'un cahier des charges client</li>
+                        <li>Rédaction d'une proposition technique et commerciale</li>
+                        <li>Présentation orale</li>
+                    </ul>
+                    <div class="carte-bas">
+                        <small>Compétences</small>
+                        <span class="tag gris">Mode projet</span><span class="tag gris">Développement pro</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carte projet" data-type="formation">
+                <img src="images/rgpd.svg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette">Formation</span>
+                    <div class="periode">01/09/2025 – 22/05/2026</div>
+                    <h3>Étude et application du RGPD</h3>
+                    <p>Prise de connaissance du cadre juridique et application dans les projets de développement.</p>
+                    <ul>
+                        <li>Droits des personnes, obligations des responsables de traitement</li>
+                        <li>Registre des traitements</li>
+                        <li>Mentions légales, gestion des cookies, sécurisation des données</li>
+                    </ul>
+                    <div class="carte-bas">
+                        <small>Compétences</small>
+                        <span class="tag gris">Patrimoine informatique</span><span class="tag gris">Développement pro</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carte projet" data-type="formation">
+                <img src="images/vm.svg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette">Formation</span>
+                    <div class="periode">01/09/2025 – 22/05/2026</div>
+                    <h3>Mise en place et administration de machines virtuelles</h3>
+                    <p>Installation et configuration de machines virtuelles sous VirtualBox / VMware.</p>
+                    <ul>
+                        <li>Windows Server et Linux</li>
+                        <li>Gestion des réseaux virtuels et des snapshots</li>
+                        <li>Droits d'accès et vérification de la continuité de service</li>
+                    </ul>
+                    <div class="carte-bas">
+                        <small>Technologies</small>
+                        <span class="tag">VirtualBox</span><span class="tag">VMware</span><span class="tag">Windows Server</span><span class="tag">Linux</span>
+                        <small>Compétences</small>
+                        <span class="tag gris">Patrimoine informatique</span><span class="tag gris">Mise à disposition d'un service</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carte projet" data-type="formation">
+                <img src="images/donnees.webp" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette">Formation</span>
+                    <div class="periode">01/09/2025 – 22/05/2026</div>
+                    <h3>Conception et manipulation de bases de données</h3>
+                    <p>Création de bases de données relationnelles dans le cadre des TP.</p>
+                    <ul>
+                        <li>Modélisation MCD / MLD</li>
+                        <li>Requêtes SQL : SELECT, INSERT, UPDATE, DELETE, jointures</li>
+                        <li>Utilisation de MySQL Workbench</li>
+                    </ul>
+                    <div class="carte-bas">
+                        <small>Technologies</small>
+                        <span class="tag">SQL</span><span class="tag">MySQL Workbench</span>
+                        <small>Compétences</small>
+                        <span class="tag gris">Patrimoine informatique</span><span class="tag gris">Mise à disposition d'un service</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carte projet" data-type="formation">
+                <img src="images/terminal.svg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette">Formation</span>
+                    <div class="periode">01/09/2025 – 22/05/2026</div>
+                    <h3>Algorithmes et scripts en Python</h3>
+                    <p>Conception et développement de scripts Python dans le cadre des cours, et résolution de problèmes algorithmiques.</p>
+                    <ul>
+                        <li>Structures de contrôle et fonctions</li>
+                        <li>Manipulation de fichiers et de listes</li>
+                    </ul>
+                    <div class="carte-bas">
+                        <small>Technologies</small>
+                        <span class="tag">Python</span>
+                        <small>Compétences</small>
+                        <span class="tag gris">Mise à disposition d'un service</span><span class="tag gris">Développement pro</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carte projet" data-type="formation">
+                <img src="images/doc.svg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette">Formation</span>
+                    <div class="periode">01/09/2025 – 22/05/2026</div>
+                    <h3>Rédaction de documentation technique</h3>
+                    <p>Rédaction et mise à jour de la documentation des projets réalisés en cours.</p>
+                    <ul>
+                        <li>Comptes-rendus de TP et notices d'utilisation</li>
+                        <li>Respect des normes de rédaction professionnelle</li>
+                        <li>Livrables structurés selon le cahier des charges</li>
+                    </ul>
+                    <div class="carte-bas">
+                        <small>Compétences</small>
+                        <span class="tag gris">Mode projet</span><span class="tag gris">Développement pro</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carte projet" data-type="formation">
+                <img src="images/veille.svg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette">Formation</span>
+                    <div class="periode">01/09/2025 – 22/05/2026</div>
+                    <h3>Veille technologique et informationnelle</h3>
+                    <p>Mise en place d'une veille sur les évolutions du domaine informatique, publiée sur ce portfolio.</p>
+                    <ul>
+                        <li>Frameworks, sécurité, actualités IT</li>
+                        <li>Outils : Feedly, flux RSS, newsletters</li>
+                    </ul>
+                    <a href="#veille" class="lien-vert">Voir ma veille →</a>
+                    <div class="carte-bas">
+                        <small>Compétences</small>
+                        <span class="tag gris">Présence en ligne</span><span class="tag gris">Développement pro</span>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- ---------- RÉALISATIONS EN STAGE (1re année) ---------- -->
+
+            <article class="carte projet" data-type="stage">
+                <img src="images/dsi.svg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette stage">Stage · DSI du CHANGE</span>
+                    <div class="periode">25/05/2026 – 29/05/2026</div>
+                    <h3>Découverte de la DSI et de l'environnement de travail</h3>
+                    <p>Prise de connaissance du Centre de Services (CDS) et des logiciels métier utilisés.</p>
+                    <ul>
+                        <li>Découverte d'IWS et des outils de ticketing</li>
+                        <li>Participation à une réunion de projet</li>
+                    </ul>
+                    <div class="carte-bas">
+                        <small>Compétences</small>
+                        <span class="tag gris">Patrimoine informatique</span><span class="tag gris">Mode projet</span><span class="tag gris">Développement pro</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carte projet" data-type="stage">
+                <img src="images/support.jpg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette stage">Stage · DSI du CHANGE</span>
+                    <div class="periode">25/05/2026 – 26/06/2026</div>
+                    <h3>Paramétrage et optimisation du logiciel IWS</h3>
+                    <p>Participation au paramétrage d'IWS, l'outil de gestion des incidents.</p>
+                    <ul>
+                        <li>Tests de communication entre les différents types de comptes</li>
+                        <li>Tests de création de tickets entre chaque type de compte</li>
+                        <li>Réunions de suivi de projet</li>
+                    </ul>
+                    <div class="carte-bas">
+                        <small>Compétences</small>
+                        <span class="tag gris">Patrimoine informatique</span><span class="tag gris">Incidents &amp; assistance</span><span class="tag gris">Mode projet</span><span class="tag gris">Mise à disposition d'un service</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carte projet" data-type="stage">
+                <img src="images/sheet.svg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette stage">Stage · DSI du CHANGE</span>
+                    <div class="periode">25/05/2026 – 26/06/2026</div>
+                    <h3>Analyse du fichier Excel des droits d'accès</h3>
+                    <p>Analyse et optimisation du fichier des droits d'accès par UF (unité fonctionnelle) et par métier.</p>
+                    <div class="carte-bas">
+                        <small>Technologies</small>
+                        <span class="tag">Excel</span>
+                        <small>Compétences</small>
+                        <span class="tag gris">Patrimoine informatique</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carte projet" data-type="stage">
+                <img src="images/headset.svg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette stage">Stage · DSI du CHANGE</span>
+                    <div class="periode">25/05/2026 – 26/06/2026</div>
+                    <h3>Prise d'appels au Centre de Services</h3>
+                    <p>Support et maintenance auprès des utilisateurs de l'hôpital.</p>
+                    <ul>
+                        <li>Réception des appels au CDS</li>
+                        <li>Traitement des demandes d'assistance</li>
+                    </ul>
+                    <div class="carte-bas">
+                        <small>Compétences</small>
+                        <span class="tag gris">Incidents &amp; assistance</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carte projet" data-type="stage">
+                <img src="images/mockup.svg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette stage">Stage · DSI du CHANGE</span>
+                    <div class="periode">25/05/2026 – 26/06/2026</div>
+                    <h3>Design d'interface pour IWS</h3>
+                    <p>Proposition d'un nouveau design pour l'interface du logiciel IWS.</p>
+                    <ul>
+                        <li>Conception d'une maquette au brouillon</li>
+                        <li>Présentation du projet aux chefs de projet</li>
+                        <li>Choix du design validé en réunion de groupe</li>
+                    </ul>
+                    <div class="carte-bas">
+                        <small>Compétences</small>
+                        <span class="tag gris">Mode projet</span><span class="tag gris">Mise à disposition d'un service</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carte projet" data-type="stage">
+                <img src="images/securite.jpeg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette stage">Stage · DSI du CHANGE</span>
+                    <div class="periode">25/05/2026 – 26/06/2026</div>
+                    <h3>Gestion des droits d'accès utilisateurs</h3>
+                    <p>Analyse et mise à jour du fichier des droits d'accès par métier et par UF.</p>
+                    <ul>
+                        <li>Vérification de la cohérence des habilitations attribuées</li>
+                        <li>Identification des anomalies</li>
+                        <li>Proposition de corrections</li>
+                    </ul>
+                    <div class="carte-bas">
+                        <small>Compétences</small>
+                        <span class="tag gris">Patrimoine informatique</span><span class="tag gris">Incidents &amp; assistance</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carte projet" data-type="stage">
+                <img src="images/report.svg" alt="">
+                <div class="carte-contenu">
+                    <span class="etiquette stage">Stage · DSI du CHANGE</span>
+                    <div class="periode">25/05/2026 – 26/06/2026</div>
+                    <h3>Rapport de stage et développement personnel</h3>
+                    <p>Valorisation de l'expérience de stage et développement des savoir-être.</p>
+                    <ul>
+                        <li>Rapport de stage (demandé par le tuteur), semainier et compte-rendu de CEJM</li>
+                        <li>Communication, autonomie, travail en équipe</li>
+                        <li>Mise à jour du portfolio</li>
+                    </ul>
+                    <div class="carte-bas">
+                        <small>Compétences</small>
+                        <span class="tag gris">Développement pro</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         PAGE 3 : COMPÉTENCES
+         ===================================================== -->
+    <section id="competences" class="page">
+        <h2 class="titre-page">Compétences</h2>
+
+        <!-- Les 6 compétences officielles du bloc 1 du BTS SIO -->
+        <h3 class="sous-titre" style="margin-top: 0;">Les compétences du BTS SIO (bloc 1)</h3>
+        <div class="bloc1">
+            <div><h4>Gérer le patrimoine informatique</h4><p>Recenser les ressources, gérer les habilitations, vérifier la continuité de service et respecter les règles (RGPD).</p></div>
+            <div><h4>Répondre aux incidents et demandes</h4><p>Collecter, suivre et traiter les demandes d'assistance et d'évolution des utilisateurs.</p></div>
+            <div><h4>Développer la présence en ligne</h4><p>Valoriser l'image d'une organisation sur le web, référencer et faire évoluer un site.</p></div>
+            <div><h4>Travailler en mode projet</h4><p>Analyser les objectifs d'un projet, planifier les activités et suivre l'avancement.</p></div>
+            <div><h4>Mettre à disposition un service</h4><p>Tester, déployer un service informatique et accompagner les utilisateurs.</p></div>
+            <div><h4>Organiser son développement professionnel</h4><p>Faire sa veille, gérer son identité professionnelle et construire son projet.</p></div>
+        </div>
+
+        <!-- Compétences techniques liées à l'option SLAM -->
+        <h3 class="sous-titre">Compétences techniques (option SLAM)</h3>
+        <div class="grille">
+            <div class="carte"><img src="images/code.svg" alt=""><div class="carte-contenu"><h3>Développement web</h3><p>HTML5, CSS3, JavaScript et PHP : sites statiques et dynamiques, bonnes pratiques et accessibilité.</p></div></div>
+            <div class="carte"><img src="images/app.svg" alt=""><div class="carte-contenu"><h3>Développement d'applications</h3><p>C# et XAML pour des applications de bureau avec interface graphique.</p></div></div>
+            <div class="carte"><img src="images/oop.svg" alt=""><div class="carte-contenu"><h3>Programmation orientée objet</h3><p>Classes, objets, héritage et encapsulation pour structurer un code réutilisable.</p></div></div>
+            <div class="carte"><img src="images/terminal.svg" alt=""><div class="carte-contenu"><h3>Python et algorithmique</h3><p>Scripts, structures de contrôle, fonctions, manipulation de fichiers et de listes.</p></div></div>
+            <div class="carte"><img src="images/donnees.webp" alt=""><div class="carte-contenu"><h3>Bases de données</h3><p>SQL et MySQL : requêtes, jointures, création et administration de bases relationnelles.</p></div></div>
+            <div class="carte"><img src="images/model.svg" alt=""><div class="carte-contenu"><h3>Modélisation</h3><p>Analyse du besoin et modélisation des données avec la méthode Merise (MCD / MLD).</p></div></div>
+            <div class="carte"><img src="images/git.svg" alt=""><div class="carte-contenu"><h3>Git et GitHub</h3><p>Versionnement du code et publication de projets en ligne avec GitHub Pages.</p></div></div>
+            <div class="carte"><img src="images/vm.svg" alt=""><div class="carte-contenu"><h3>Systèmes et virtualisation</h3><p>VirtualBox, VMware, Windows Server et Linux : installation, réseaux virtuels et snapshots.</p></div></div>
+            <div class="carte"><img src="images/securite.jpeg" alt=""><div class="carte-contenu"><h3>Cybersécurité et RGPD</h3><p>Gestion des droits d'accès, sécurisation des applications et protection des données personnelles.</p></div></div>
+        </div>
+
+        <!-- Compétences transversales -->
+        <h3 class="sous-titre">Compétences transversales</h3>
+        <div class="grille">
+            <div class="carte"><img src="images/travail-equipe.jpg" alt=""><div class="carte-contenu"><h3>Gestion de projet</h3><p>Méthodes agiles, planification et travail en équipe.</p></div></div>
+            <div class="carte"><img src="images/support.jpg" alt=""><div class="carte-contenu"><h3>Support utilisateurs</h3><p>Assistance technique, prise d'appels et traitement de tickets.</p></div></div>
+            <div class="carte"><img src="images/doc.svg" alt=""><div class="carte-contenu"><h3>Documentation</h3><p>Rédaction de comptes-rendus, de notices et de documentation technique.</p></div></div>
+            <div class="carte"><img src="images/veille.svg" alt=""><div class="carte-contenu"><h3>Analyse et veille</h3><p>Analyse des besoins d'un client et veille technologique régulière.</p></div></div>
+            <div class="carte"><img src="images/talk.svg" alt=""><div class="carte-contenu"><h3>Communication</h3><p>Présentations orales, échanges avec les utilisateurs et les chefs de projet, autonomie.</p></div></div>
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         PAGE 4 : PARCOURS PROFESSIONNEL (du plus récent au plus ancien)
+         ===================================================== -->
+    <section id="parcours" class="page">
+        <h2 class="titre-page">Parcours Professionnel</h2>
+        <div class="frise">
+
+            <div class="etape">
+                <img src="images/caisse.jpg" alt="">
+                <div class="etape-texte">
+                    <div class="date">Septembre 2026 - Aujourd'hui</div>
+                    <div class="poste">Hôte de caisse</div>
+                    <div class="lieu">E.Leclerc, Annecy</div>
+                </div>
+            </div>
+
+            <div class="etape">
+                <img src="images/hospital.svg" alt="">
+                <div class="etape-texte">
+                    <div class="date">Mai 2026 - Juin 2026</div>
+                    <div class="poste">Stage informatique (BTS SIO 1re année)</div>
+                    <div class="lieu">DSI du CHANGE (centre hospitalier d'Annecy)</div>
+                    <p>Paramétrage du logiciel IWS, maquette d'interface, gestion des droits d'accès et support utilisateurs au Centre de Services.</p>
+                    <a href="#projets" class="lien-vert">Voir les réalisations du stage →</a>
+                </div>
+            </div>
+
+            <div class="etape">
+                <img src="images/cart.svg" alt="">
+                <div class="etape-texte">
+                    <div class="date">Novembre 2025 - Mai 2025</div>
+                    <div class="poste">Préparateur de commandes</div>
+                    <div class="lieu">Auchan Drive, Epagny</div>
+                </div>
+            </div>
+
+            <div class="etape">
+                <img src="images/aide-domicile.jpg" alt="">
+                <div class="etape-texte">
+                    <div class="date">Juin 2025 - Août 2025</div>
+                    <div class="poste">Aide à domicile</div>
+                    <div class="lieu">CIAS Grand Annecy</div>
+                </div>
+            </div>
+
+            <div class="etape">
+                <img src="images/livraison.jpg" alt="">
+                <div class="etape-texte">
+                    <div class="date">Février 2025 - Juin 2025</div>
+                    <div class="poste">Livreur VL et équipier polyvalent</div>
+                    <div class="lieu">Allo nems</div>
+                </div>
+            </div>
+
+            <div class="etape">
+                <img src="images/food.svg" alt="">
+                <div class="etape-texte">
+                    <div class="date">Décembre 2024 - Juin 2025</div>
+                    <div class="poste">Équipier polyvalent</div>
+                    <div class="lieu">McDonald's, Epagny</div>
+                </div>
+            </div>
+
+            <div class="etape">
+                <img src="images/office.svg" alt="">
+                <div class="etape-texte">
+                    <div class="date">Février 2022</div>
+                    <div class="poste">Stage d'observation</div>
+                    <div class="lieu">Guest-Star, Seynod</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         PAGE 5 : VEILLE TECHNOLOGIQUE
+         Pour ajouter une actualité : copier une ligne <tr> ... </tr>
+         en haut du tableau (la plus récente en premier).
+         ===================================================== -->
+    <section id="veille" class="page">
+        <h2 class="titre-page">Veille Technologique</h2>
+        <h3 class="sous-titre" style="margin-top: 0;">Thème : l'IA au service du développement logiciel</h3>
+
+        <div class="deux-colonnes">
+            <div class="encadre">
+                <b>Pourquoi ce thème ?</b>
+                <p>Les outils d'IA générative transforment le travail du développeur : écriture du code, tests automatisés, revue de code, refactoring. En tant que futur développeur SLAM, je dois comprendre ces outils, savoir les utiliser et connaître leurs limites, notamment en matière de sécurité et de protection des données.</p>
+            </div>
+            <div class="encadre">
+                <b>Ma méthode de veille</b>
+                <p>Je suis des flux RSS regroupés dans Feedly, des alertes Google sur des mots-clés (« agent IA code », « Copilot », « sécurité code IA ») et je consulte chaque semaine des blogs techniques. Je note ensuite chaque actualité importante dans le tableau ci-dessous avec mon analyse.</p>
+                <p style="margin-top: 15px;">
+                    <span class="tag">Feedly</span><span class="tag">Google Alerts</span><span class="tag">GitHub Blog</span><span class="tag">Stack Overflow</span><span class="tag">Newsletters</span>
+                </p>
+            </div>
+        </div>
+
+        <h3 class="sous-titre">Suivi de l'actualité</h3>
+        <div class="tableau-defilant">
+        <table class="veille">
+            <thead>
+                <tr><th>Date</th><th>Sujet</th><th>Outil / Techno</th><th>Analyse</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Octobre 2026</td>
+                    <td>GitHub Universe 2026 : les agents IA au cœur de GitHub</td>
+                    <td>Copilot Fusion / Copilot app</td>
+                    <td>GitHub présente Copilot Fusion, qui choisit automatiquement le modèle d'IA le plus adapté à chaque étape d'une tâche, et une application Copilot qui fait travailler plusieurs agents en parallèle sur différents dépôts. Le développeur passe de l'écriture du code à la supervision d'agents. <a href="https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/" target="_blank" rel="noopener">Source</a></td>
+                </tr>
+                <tr>
+                    <td>Octobre 2026</td>
+                    <td>Enquête JetBrains : les agents de code deviennent la norme</td>
+                    <td>Claude Code / Codex</td>
+                    <td>Selon une enquête auprès de plus de 15 000 développeurs, environ 39 % ont utilisé Claude Code au travail entre mai et juillet 2026, contre 18 % en janvier. Savoir travailler avec un agent IA devient une compétence attendue en entreprise. <a href="https://tech-insider.org/fr/agents-code-ia-claude-code-codex-2026/" target="_blank" rel="noopener">Source</a></td>
+                </tr>
+                <tr>
+                    <td>Septembre 2026</td>
+                    <td>Gouvernance &amp; conformité du code IA</td>
+                    <td>DevSecOps / AI Governance</td>
+                    <td>Entrée en vigueur de réglementations sur l'usage d'outils IA dans le logiciel. Obligation de mettre en place un contrôle de traçabilité des lignes de code générées et une validation humaine stricte.</td>
+                </tr>
+                <tr>
+                    <td>Août 2026</td>
+                    <td>Rapport Veracode sur la sécurité du code généré par IA</td>
+                    <td>Sécurité applicative</td>
+                    <td>Le code produit par l'IA est presque toujours correct sur le plan de la syntaxe, mais il ne réussit qu'environ 56 % des tests de sécurité. Le code généré doit donc toujours être relu et testé avant d'être mis en production. <a href="https://www.esecurityplanet.com/threats/veracode-constate-que-le-code-genere-par-lia-reste-vulnerable/" target="_blank" rel="noopener">Source</a></td>
+                </tr>
+                <tr>
+                    <td>Août 2026</td>
+                    <td>Meta lance Muse Code</td>
+                    <td>Muse Code / Muse Spark</td>
+                    <td>Meta entre sur le marché des agents de code avec un outil en ligne de commande moins cher que ses concurrents. En contrepartie, l'offre la moins chère permet à Meta d'utiliser le code des développeurs pour entraîner ses modèles : un vrai sujet de confidentialité et de RGPD pour les entreprises. <a href="https://siecledigital.fr/2026/08/07/meta-veut-seduire-les-developpeurs-avec-une-alternative-moins-chere-a-claude-code/" target="_blank" rel="noopener">Source</a></td>
+                </tr>
+                <tr>
+                    <td>Août 2026</td>
+                    <td>Agents IA en tâches de fond (Background Agents)</td>
+                    <td>Cursor / Async Agents</td>
+                    <td>Lancement d'agents s'exécutant en arrière-plan pour résoudre des tickets complexes (refactoring multi-fichiers, migrations d'API) pendant que le développeur travaille sur d'autres tâches.</td>
+                </tr>
+                <tr>
+                    <td>Juillet 2026</td>
+                    <td>Approche « Spec-Driven Development » (SDD)</td>
+                    <td>Architecture / Prompt Eng.</td>
+                    <td>Émergence d'une méthode où le développeur rédige en priorité des spécifications structurées et des tests, laissant aux agents IA le soin d'implémenter l'architecture applicative.</td>
+                </tr>
+                <tr>
+                    <td>Juin 2026</td>
+                    <td>Rationalisation du marché des outils d'IA pour le code</td>
+                    <td>Claude Code / OpenAI / xAI</td>
+                    <td>Reconfiguration des outils d'assistance (rachats et intégrations stratégiques). Nécessité pour un profil SLAM de rester agnostique vis-à-vis des éditeurs et de maîtriser les concepts clés.</td>
+                </tr>
+                <tr>
+                    <td>Mai 2026</td>
+                    <td>Agents IA autonomes exécutables en CLI</td>
+                    <td>Claude Code CLI / Terminal</td>
+                    <td>L'assistance au codage sort de l'IDE classique : exécution d'instructions complexes directement en ligne de commande pour lire, modifier des fichiers et valider les tests automatiquement.</td>
+                </tr>
+                <tr>
+                    <td>Avril 2026</td>
+                    <td>Génération dynamique de tests E2E</td>
+                    <td>Playwright / Cypress IA</td>
+                    <td>Automatisation du parcours utilisateur complet : l'IA analyse l'interface web, identifie les éléments interactifs et génère les scripts de tests d'intégration.</td>
+                </tr>
+                <tr>
+                    <td>Mars 2026</td>
+                    <td>Agents de revue de code automatique dans les CI/CD</td>
+                    <td>GitHub Actions / Copilot CLI</td>
+                    <td>Intégration d'agents autonomes dans les Pull Requests pour effectuer un premier niveau de revue (détection d'anti-patterns et de failles de sécurité) avant la validation humaine.</td>
+                </tr>
+                <tr>
+                    <td>Février 2026</td>
+                    <td>Adoption de Cursor par les entreprises</td>
+                    <td>IDE / LLM</td>
+                    <td>Amélioration de 30 % de la rapidité d'écriture des tests unitaires.</td>
+                </tr>
+                <tr>
+                    <td>Janvier 2026</td>
+                    <td>Sécurité du code généré par IA</td>
+                    <td>Cybersécurité</td>
+                    <td>Analyse des risques d'injection SQL via les suggestions de code automatique.</td>
+                </tr>
+                <tr>
+                    <td>Novembre 2025</td>
+                    <td>GitHub Copilot Extensions</td>
+                    <td>DevOps / SLAM</td>
+                    <td>Intégration directe de Docker et SQL Server dans l'assistance conversationnelle.</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <h3 class="sous-titre">Ce que j'en retiens</h3>
+        <div class="encadre">
+            <ul>
+                <li><strong>Le métier évolue :</strong> le développeur écrit moins de code à la main et passe plus de temps à décrire le besoin, à guider les agents IA et à vérifier leur travail.</li>
+                <li><strong>La sécurité reste une responsabilité humaine :</strong> un code qui fonctionne n'est pas forcément sûr. Les tests, la relecture et la connaissance des failles (comme l'injection SQL) restent indispensables.</li>
+                <li><strong>Les données comptent :</strong> avant d'utiliser un outil d'IA, il faut vérifier ce qu'il fait du code de l'entreprise, en lien avec le RGPD et la confidentialité.</li>
+                <li><strong>Pour moi :</strong> je dois bien maîtriser les bases (algorithmique, SQL, POO, tests) pour pouvoir juger et corriger ce que l'IA propose.</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         PAGE 6 : ÉPREUVE E5 – TABLEAU DE SYNTHÈSE
+         Une ligne <tr> par réalisation ; ✔ = compétence mobilisée.
+         Ordre des colonnes : Patrimoine, Incidents, Présence en ligne,
+         Projet, Mise à disposition d'un service, Développement pro.
+         ===================================================== -->
+    <section id="e5" class="page">
+        <h2 class="titre-page">Épreuve E5</h2>
+        <p class="intro">Tableau de synthèse de mes réalisations professionnelles pour l'épreuve E5 du BTS SIO (bloc 1 : Support et mise à disposition de services informatiques).</p>
+
+        <div class="e5-infos">
+            <span><b>Candidat :</b> Montassir Didouche</span>
+            <span><b>Session :</b> 2027</span>
+            <span><b>Option :</b> SLAM</span>
+            <span><b>Centre de formation :</b> Lycée Saint-Michel, Annecy</span>
+        </div>
+
+        <div class="tableau-defilant">
+        <table class="tableau-e5">
+            <thead>
+                <tr>
+                    <th>Réalisation professionnelle</th>
+                    <th>Période</th>
+                    <th>Gérer le patrimoine informatique</th>
+                    <th>Répondre aux incidents et demandes</th>
+                    <th>Développer la présence en ligne</th>
+                    <th>Travailler en mode projet</th>
+                    <th>Mettre à disposition un service</th>
+                    <th>Organiser son dév. professionnel</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="section"><td colspan="8">Réalisations en cours de formation</td></tr>
+                <tr><td>Développement d'un site sur les perceptrons</td><td class="per">01/09/2025 au 09/01/2026</td><td class="coche"></td><td class="coche"></td><td class="coche">✔</td><td class="coche"></td><td class="coche">✔</td><td class="coche">✔</td></tr>
+                <tr><td>Développement d'un site dynamique pour un centre de loisirs</td><td class="per">10/01/2026 au 22/05/2026</td><td class="coche">✔</td><td class="coche"></td><td class="coche">✔</td><td class="coche">✔</td><td class="coche">✔</td><td class="coche"></td></tr>
+                <tr><td>Réalisation de sites web variés et de mon portfolio</td><td class="per">10/01/2026 au 22/05/2026</td><td class="coche"></td><td class="coche"></td><td class="coche">✔</td><td class="coche"></td><td class="coche">✔</td><td class="coche">✔</td></tr>
+                <tr><td>Réponse à un appel d'offres fictif</td><td class="per">01/09/2025 au 09/01/2026</td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche">✔</td><td class="coche"></td><td class="coche">✔</td></tr>
+                <tr><td>Étude et application du RGPD</td><td class="per">01/09/2025 au 22/05/2026</td><td class="coche">✔</td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche">✔</td></tr>
+                <tr><td>Mise en place et administration de machines virtuelles</td><td class="per">01/09/2025 au 22/05/2026</td><td class="coche">✔</td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche">✔</td><td class="coche"></td></tr>
+                <tr><td>Conception et manipulation de bases de données</td><td class="per">01/09/2025 au 22/05/2026</td><td class="coche">✔</td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche">✔</td><td class="coche"></td></tr>
+                <tr><td>Développement d'algorithmes / script en Python</td><td class="per">01/09/2025 au 22/05/2026</td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche">✔</td><td class="coche">✔</td></tr>
+                <tr><td>Rédaction et mise à jour de documentation technique</td><td class="per">01/09/2025 au 22/05/2026</td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche">✔</td><td class="coche"></td><td class="coche">✔</td></tr>
+                <tr><td>Veille technologique et informationnelle</td><td class="per">01/09/2025 au 22/05/2026</td><td class="coche"></td><td class="coche"></td><td class="coche">✔</td><td class="coche"></td><td class="coche"></td><td class="coche">✔</td></tr>
+                <tr class="section"><td colspan="8">Réalisations en milieu professionnel – 1re année (DSI du CHANGE)</td></tr>
+                <tr><td>Découverte de la DSI du CHANGE et mise en place de l'environnement de travail</td><td class="per">25/05/2026 au 29/05/2026</td><td class="coche">✔</td><td class="coche"></td><td class="coche"></td><td class="coche">✔</td><td class="coche"></td><td class="coche">✔</td></tr>
+                <tr><td>Paramétrage et optimisation du logiciel IWS (gestion des incidents)</td><td class="per">25/05/2026 au 26/06/2026</td><td class="coche">✔</td><td class="coche">✔</td><td class="coche"></td><td class="coche">✔</td><td class="coche">✔</td><td class="coche"></td></tr>
+                <tr><td>Travail sur fichier Excel : analyse et optimisation du fichier des droits d'accès par UF et métier</td><td class="per">25/05/2026 au 26/06/2026</td><td class="coche">✔</td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche"></td></tr>
+                <tr><td>Prise d'appels au CDS (Centre de Services) — support et maintenance utilisateurs</td><td class="per">25/05/2026 au 26/06/2026</td><td class="coche"></td><td class="coche">✔</td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche"></td></tr>
+                <tr><td>Conception d'un design d'interface pour IWS (maquette au brouillon)</td><td class="per">25/05/2026 au 26/06/2026</td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche">✔</td><td class="coche">✔</td><td class="coche"></td></tr>
+                <tr><td>Gestion des droits d'accès utilisateurs (fichier UF/Métier)</td><td class="per">25/05/2026 au 26/06/2026</td><td class="coche">✔</td><td class="coche">✔</td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche"></td></tr>
+                <tr><td>Rédaction du rapport de stage (demandé par le tuteur), du semainier et du compte-rendu de CEJM</td><td class="per">25/05/2026 au 26/06/2026</td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche"></td><td class="coche">✔</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <div class="e5-actions">
+            <a href="docs/Tableau_E5_Montassir_Didouche.pdf" download class="bouton-cv">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/></svg>
+                Télécharger le tableau (PDF)
+            </a>
+            <a href="#projets" class="bouton">VOIR LE DÉTAIL DES PROJETS</a>
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         PAGE 7 : COORDONNÉES
+         ===================================================== -->
+    <section id="contact" class="page">
+        <h2 class="titre-page">Coordonnées</h2>
+        <div class="contact">
+            <div>
+                <b>Contact direct</b>
+                <p>Email : <a href="mailto:montassirdid1@gmail.com">montassirdid1@gmail.com</a></p>
+                <p>Localisation : Annecy (74)</p>
+            </div>
+            <div>
+                <b>Réseau &amp; infos</b>
+                <p>LinkedIn : <a href="https://www.linkedin.com/in/montassir-didouche-0402373a6/" target="_blank" rel="noopener">Profil de Montassir Didouche</a></p>
+                <p>GitHub : <a href="https://github.com/Montassir-ddc" target="_blank" rel="noopener">Montassir-ddc</a></p>
+                <p>Permis B (AAC)</p>
+                <a href="cv/CV_Montassir_Didouche.pdf" download class="bouton-cv">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/></svg>
+                    Télécharger mon CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         PAGE 8 : MENTIONS LÉGALES (lien dans le pied de page)
+         ===================================================== -->
+    <section id="mentions" class="page mentions">
+        <h2 class="titre-page">Mentions légales</h2>
+
+        <h3>Éditeur du site</h3>
+        <p>Ce site est un portfolio personnel réalisé et édité par Montassir Didouche, étudiant en BTS SIO au Lycée Saint-Michel d'Annecy. Contact : <a href="mailto:montassirdid1@gmail.com">montassirdid1@gmail.com</a></p>
+
+        <h3>Hébergement</h3>
+        <p>GitHub Pages – GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+
+        <h3>Propriété intellectuelle</h3>
+        <p>Les textes, illustrations et réalisations présentés sur ce site sont la propriété de leur auteur, sauf mention contraire.</p>
+
+        <h3>Données personnelles et cookies</h3>
+        <p>Ce site ne dépose aucun cookie, n'utilise aucun outil de mesure d'audience et ne collecte aucune donnée par formulaire. Les polices d'écriture sont chargées depuis Google Fonts, ce qui transmet techniquement votre adresse IP à Google.</p>
+        <p>Conformément au RGPD, vous pouvez demander la modification ou la suppression de vos informations en écrivant à l'adresse de contact ci-dessus.</p>
+    </section>
+
+
+    <!-- ===== Pied de page (visible sur toutes les pages) ===== -->
+    <footer>
+        <span>© <span id="annee">2026</span> Montassir Didouche · BTS SIO SLAM · Lycée Saint-Michel, Annecy</span>
+        <a href="#mentions">Mentions légales</a>
+    </footer>
+
+    <!-- Le script est chargé en dernier, quand toute la page existe -->
+    <script src="js/script.js"></script>
+</body>
+</html>
